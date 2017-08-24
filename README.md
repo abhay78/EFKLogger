@@ -1,1 +1,2 @@
-# EFKLogger
+# logger
+Centralized Logging Service v1

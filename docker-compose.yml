@@ -1,0 +1,28 @@
+version: "2"
+services:
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - "./fluentd/conf:/fluentd/etc"
+    links:
+      - "elasticsearch"
+    expose:
+      - 8888
+    ports:
+      - "8888:8888"
+
+  elasticsearch:
+    image: elasticsearch
+    expose:
+      - 9200
+    ports:
+      - "9200:9200"
+    volumes:
+      - "./esdata:/usr/share/elasticsearch/data"
+
+  kibana:
+    image: kibana
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
